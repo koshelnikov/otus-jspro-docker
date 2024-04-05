@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+
+    <script>
+        const getDataFromServer = () => {
+            const name = document.getElementById('name')
+            fetch(`http://localhost:4000/hello/${name.value}`)
+                .then(response => {
+                    response.text().then(data => {
+                        document.getElementById('response').innerText = data;
+                    })
+                })
+        }
+    </script>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+
+<main>
+    <div class="jumbotron">
+        <h1>This is great</h1>
+        <p>Welcome to templating using EJS</p>
+        <input id="name"/>
+        <button onclick="getDataFromServer()">Get Name</button>
+        <p id="response"></p>
+    </div>
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
